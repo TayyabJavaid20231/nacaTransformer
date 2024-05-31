@@ -16,6 +16,7 @@ import tensorflow as tf
 from src.preprocessing.preprocess import generate_tfds_dataset
 from train_parallel import train_and_evaluate_parallel
 from train import train_and_evaluate
+from post_process import post_process_state
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # disable INFO and WARNING messages
 os.environ["XLA_PYTHON_CLIENT_MEM_FRACTION"] = "0.85"
@@ -51,6 +52,8 @@ def main(argv):
         train_and_evaluate_parallel(FLAGS.config)    
     elif FLAGS.config.trainer == 'inference':
         print('Implement inference')
+    elif FLAGS.config.trainer == 'postprocess_state':
+        post_process_state(FLAGS.config)
     else:
         raise app.UsageError('Unknown trainer: {FLAGS.config.trainer}')
 

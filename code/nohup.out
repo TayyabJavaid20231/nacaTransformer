@@ -1,0 +1,225 @@
+2024-04-27 13:15:59.226523: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2024-04-27 13:15:59.226602: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2024-04-27 13:15:59.228595: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2024-04-27 13:16:02.293802: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+I0427 13:16:20.011223 140038734415680 xla_bridge.py:863] Unable to initialize backend 'rocm': NOT_FOUND: Could not find registered platform with name: "rocm". Available platform names are: CUDA
+I0427 13:16:20.014545 140038734415680 xla_bridge.py:863] Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: libtpu.so: cannot open shared object file: No such file or directory
+I0427 13:16:20.030455 140038734415680 main.py:43] JAX process: 0 / 1
+I0427 13:16:20.030575 140038734415680 main.py:45] JAX local devices: [cuda(id=0), cuda(id=1), cuda(id=2), cuda(id=3)]
+I0427 13:16:20.031354 140038734415680 train_parallel.py:105] Initialising airfoilMNIST dataset.
+I0427 13:16:20.034152 140038734415680 dataset_info.py:599] Load dataset info from /local/disk1/tjavaid/PreprocessedDataSet4nacaFOAM/Incompressible_256x256/
+I0427 13:16:20.038763 140038734415680 dataset_info.py:691] For 'airfoilMNIST/1.0.0': fields info.[module_name] differ on disk and in the code. Keeping the one from code.
+I0427 13:16:20.147450 140038734415680 logging_logger.py:49] Constructing tf.data.Dataset airfoilMNIST for split _EvenSplit(split='train', index=0, count=1, drop_remainder=False), from /local/disk1/tjavaid/PreprocessedDataSet4nacaFOAM/Incompressible_256x256/
+I0427 13:16:20.163510 140038734415680 dataset_info.py:599] Load dataset info from /local/disk1/tjavaid/PreprocessedDataSet4nacaFOAM/Incompressible_256x256/
+I0427 13:16:20.166430 140038734415680 dataset_info.py:691] For 'airfoilMNIST/1.0.0': fields info.[module_name] differ on disk and in the code. Keeping the one from code.
+I0427 13:16:20.217635 140038734415680 logging_logger.py:49] Constructing tf.data.Dataset airfoilMNIST for split _EvenSplit(split='test', index=0, count=1, drop_remainder=False), from /local/disk1/tjavaid/PreprocessedDataSet4nacaFOAM/Incompressible_256x256/
+I0427 13:16:27.788763 140038734415680 train_parallel.py:132] Starting training loop. Initial compile might take a while.
+2024-04-27 13:16:37.947282: E external/xla/xla/service/slow_operation_alarm.cc:65] Trying algorithm eng35{k2=2,k3=0} for conv (f32[6,3,256,256]{3,2,1,0}, u8[0]{0}) custom-call(f32[6,300,263,263]{3,2,1,0}, f32[3,300,8,8]{3,2,1,0}, f32[3]{0}), window={size=8x8}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convBiasActivationForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"conv_result_scale":1,"activation_mode":"kNone","side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false} is taking a while...
+2024-04-27 13:16:38.011655: E external/xla/xla/service/slow_operation_alarm.cc:133] The operation took 1.064510774s
+Trying algorithm eng35{k2=2,k3=0} for conv (f32[6,3,256,256]{3,2,1,0}, u8[0]{0}) custom-call(f32[6,300,263,263]{3,2,1,0}, f32[3,300,8,8]{3,2,1,0}, f32[3]{0}), window={size=8x8}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convBiasActivationForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"conv_result_scale":1,"activation_mode":"kNone","side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false} is taking a while...
+I0427 13:31:40.530028 140038734415680 train_parallel.py:177] Epoch 1: Train_loss = 0.05593295395374298, Test_loss = 0.005395384971052408
+I0427 13:46:29.836480 140038734415680 train_parallel.py:177] Epoch 2: Train_loss = 0.0038016506005078554, Test_loss = 0.003713854355737567
+I0427 14:01:21.278395 140038734415680 train_parallel.py:177] Epoch 3: Train_loss = 0.002264969749376178, Test_loss = 0.0017562973080202937
+I0427 14:16:14.086251 140038734415680 train_parallel.py:177] Epoch 4: Train_loss = 0.0016027612145990133, Test_loss = 0.0012921146117150784
+I0427 14:31:06.750586 140038734415680 train_parallel.py:177] Epoch 5: Train_loss = 0.0012814587680622935, Test_loss = 0.0011176138650625944
+I0427 14:45:59.983576 140038734415680 train_parallel.py:177] Epoch 6: Train_loss = 0.0010578515939414501, Test_loss = 0.0009088391670957208
+I0427 15:00:52.586817 140038734415680 train_parallel.py:177] Epoch 7: Train_loss = 0.0009189723059535027, Test_loss = 0.000775529770180583
+I0427 15:15:45.675064 140038734415680 train_parallel.py:177] Epoch 8: Train_loss = 0.0008163586026057601, Test_loss = 0.0007527375128120184
+I0427 15:30:37.904871 140038734415680 train_parallel.py:177] Epoch 9: Train_loss = 0.0007270255591720343, Test_loss = 0.0006498093134723604
+I0427 15:45:30.123272 140038734415680 train_parallel.py:177] Epoch 10: Train_loss = 0.0006682648090645671, Test_loss = 0.0007687255274504423
+I0427 16:02:02.910258 140038734415680 train_parallel.py:177] Epoch 11: Train_loss = 0.0006121427286416292, Test_loss = 0.000700232689268887
+I0427 16:16:55.503121 140038734415680 train_parallel.py:177] Epoch 12: Train_loss = 0.000586108595598489, Test_loss = 0.0005565998726524413
+I0427 16:31:47.236438 140038734415680 train_parallel.py:177] Epoch 13: Train_loss = 0.0005602560704573989, Test_loss = 0.0007486080867238343
+I0427 16:46:39.189860 140038734415680 train_parallel.py:177] Epoch 14: Train_loss = 0.0005214939010329545, Test_loss = 0.0005469680763781071
+I0427 17:01:31.779351 140038734415680 train_parallel.py:177] Epoch 15: Train_loss = 0.0004884807276539505, Test_loss = 0.0004688237386289984
+I0427 17:16:26.213128 140038734415680 train_parallel.py:177] Epoch 16: Train_loss = 0.00046900982852093875, Test_loss = 0.0004234813677612692
+I0427 17:31:19.043980 140038734415680 train_parallel.py:177] Epoch 17: Train_loss = 0.0004471943830139935, Test_loss = 0.0005159006104804575
+I0427 17:46:13.838694 140038734415680 train_parallel.py:177] Epoch 18: Train_loss = 0.0004245283198542893, Test_loss = 0.0003734341589733958
+I0427 18:01:08.634265 140038734415680 train_parallel.py:177] Epoch 19: Train_loss = 0.0004099425277672708, Test_loss = 0.00036894972436130047
+I0427 18:16:03.522680 140038734415680 train_parallel.py:177] Epoch 20: Train_loss = 0.0003803336003329605, Test_loss = 0.0003488372021820396
+I0427 18:31:23.116555 140038734415680 train_parallel.py:177] Epoch 21: Train_loss = 0.0003979455796070397, Test_loss = 0.0003452801611274481
+I0427 18:46:17.318134 140038734415680 train_parallel.py:177] Epoch 22: Train_loss = 0.00037946662632748485, Test_loss = 0.00035393392317928374
+I0427 19:01:11.455161 140038734415680 train_parallel.py:177] Epoch 23: Train_loss = 0.000340110418619588, Test_loss = 0.00031717875390313566
+I0427 19:16:05.908519 140038734415680 train_parallel.py:177] Epoch 24: Train_loss = 0.0003607427061069757, Test_loss = 0.00031124847009778023
+I0427 19:31:00.732547 140038734415680 train_parallel.py:177] Epoch 25: Train_loss = 0.0003281092213001102, Test_loss = 0.0004253813822288066
+I0427 19:45:55.262715 140038734415680 train_parallel.py:177] Epoch 26: Train_loss = 0.00031718643731437624, Test_loss = 0.00029743765480816364
+I0427 20:00:50.182945 140038734415680 train_parallel.py:177] Epoch 27: Train_loss = 0.0003113303682766855, Test_loss = 0.0006827279576100409
+I0427 20:15:45.129836 140038734415680 train_parallel.py:177] Epoch 28: Train_loss = 0.000302779400954023, Test_loss = 0.00026928336592391133
+I0427 20:30:39.787096 140038734415680 train_parallel.py:177] Epoch 29: Train_loss = 0.0002911073970608413, Test_loss = 0.00026650886866264045
+I0427 20:45:33.824688 140038734415680 train_parallel.py:177] Epoch 30: Train_loss = 0.0002842004469130188, Test_loss = 0.0002529827761463821
+I0427 21:00:53.542787 140038734415680 train_parallel.py:177] Epoch 31: Train_loss = 0.0002761340292636305, Test_loss = 0.00025888337404467165
+I0427 21:15:47.963304 140038734415680 train_parallel.py:177] Epoch 32: Train_loss = 0.0002654606360010803, Test_loss = 0.0002390457084402442
+I0427 21:30:42.650542 140038734415680 train_parallel.py:177] Epoch 33: Train_loss = 0.000257391162449494, Test_loss = 0.0003893001703545451
+I0427 21:45:38.014296 140038734415680 train_parallel.py:177] Epoch 34: Train_loss = 0.000237905333051458, Test_loss = 0.00023423451057169586
+I0427 22:00:32.267196 140038734415680 train_parallel.py:177] Epoch 35: Train_loss = 0.00026285272906534374, Test_loss = 0.00022335602261591703
+I0427 22:15:27.227509 140038734415680 train_parallel.py:177] Epoch 36: Train_loss = 0.0002407426800346002, Test_loss = 0.0002179222647100687
+I0427 22:30:21.425098 140038734415680 train_parallel.py:177] Epoch 37: Train_loss = 0.00023883560788817704, Test_loss = 0.0002387116546742618
+I0427 22:45:15.975102 140038734415680 train_parallel.py:177] Epoch 38: Train_loss = 0.0002299476182088256, Test_loss = 0.00020686323114205152
+I0427 23:00:10.111312 140038734415680 train_parallel.py:177] Epoch 39: Train_loss = 0.00022449696552939713, Test_loss = 0.00028103843214921653
+I0427 23:15:04.489942 140038734415680 train_parallel.py:177] Epoch 40: Train_loss = 0.00022309068299364299, Test_loss = 0.0002030677133006975
+I0427 23:30:24.247143 140038734415680 train_parallel.py:177] Epoch 41: Train_loss = 0.00021718780044466257, Test_loss = 0.00019672811322379857
+I0427 23:45:18.532578 140038734415680 train_parallel.py:177] Epoch 42: Train_loss = 0.00019818791770376265, Test_loss = 0.00019188593432772905
+I0428 00:00:12.839392 140038734415680 train_parallel.py:177] Epoch 43: Train_loss = 0.00022537777840625495, Test_loss = 0.00019063576473854482
+I0428 00:15:06.784151 140038734415680 train_parallel.py:177] Epoch 44: Train_loss = 0.00020818352641072124, Test_loss = 0.00019782231538556516
+I0428 00:30:00.218597 140038734415680 train_parallel.py:177] Epoch 45: Train_loss = 0.00020267740183044225, Test_loss = 0.00018484560132492334
+I0428 00:44:52.945532 140038734415680 train_parallel.py:177] Epoch 46: Train_loss = 0.00019961893849540502, Test_loss = 0.00021209672559052706
+I0428 00:59:44.969887 140038734415680 train_parallel.py:177] Epoch 47: Train_loss = 0.00020003369718324393, Test_loss = 0.00018439142149873078
+I0428 01:14:37.680807 140038734415680 train_parallel.py:177] Epoch 48: Train_loss = 0.00019583338871598244, Test_loss = 0.00017639836005400866
+I0428 01:29:30.024594 140038734415680 train_parallel.py:177] Epoch 49: Train_loss = 0.0001784019113983959, Test_loss = 0.00017398112686350942
+I0428 01:44:23.253072 140038734415680 train_parallel.py:177] Epoch 50: Train_loss = 0.00019013017299585044, Test_loss = 0.0001757372956490144
+2024-05-10 19:09:27.907111: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2024-05-10 19:09:27.907211: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2024-05-10 19:09:27.910245: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2024-05-10 19:09:36.187012: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+I0510 19:11:42.912109 140324399277888 xla_bridge.py:863] Unable to initialize backend 'rocm': NOT_FOUND: Could not find registered platform with name: "rocm". Available platform names are: CUDA
+I0510 19:11:42.922118 140324399277888 xla_bridge.py:863] Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: libtpu.so: cannot open shared object file: No such file or directory
+I0510 19:11:42.944247 140324399277888 main.py:43] JAX process: 0 / 1
+I0510 19:11:42.944415 140324399277888 main.py:45] JAX local devices: [cuda(id=0), cuda(id=1), cuda(id=2), cuda(id=3)]
+I0510 19:11:42.945302 140324399277888 train_parallel.py:105] Initialising airfoilMNIST dataset.
+I0510 19:11:43.040698 140324399277888 dataset_info.py:599] Load dataset info from /local/disk1/tjavaid/PreprocessedDataSet4nacaFOAM/Incompressible_128x128/
+I0510 19:11:43.081547 140324399277888 dataset_info.py:691] For 'airfoilMNIST/1.0.0': fields info.[module_name] differ on disk and in the code. Keeping the one from code.
+I0510 19:11:43.250644 140324399277888 logging_logger.py:49] Constructing tf.data.Dataset airfoilMNIST for split _EvenSplit(split='train', index=0, count=1, drop_remainder=False), from /local/disk1/tjavaid/PreprocessedDataSet4nacaFOAM/Incompressible_128x128/
+I0510 19:11:52.726949 140324399277888 dataset_info.py:599] Load dataset info from /local/disk1/tjavaid/PreprocessedDataSet4nacaFOAM/Incompressible_128x128/
+I0510 19:11:52.732877 140324399277888 dataset_info.py:691] For 'airfoilMNIST/1.0.0': fields info.[module_name] differ on disk and in the code. Keeping the one from code.
+I0510 19:11:52.800508 140324399277888 logging_logger.py:49] Constructing tf.data.Dataset airfoilMNIST for split _EvenSplit(split='test', index=0, count=1, drop_remainder=False), from /local/disk1/tjavaid/PreprocessedDataSet4nacaFOAM/Incompressible_128x128/
+I0510 19:12:03.753665 140324399277888 train_parallel.py:132] Starting training loop. Initial compile might take a while.
+2024-05-10 19:12:29.157367: E external/xla/xla/service/slow_operation_alarm.cc:65] Trying algorithm eng3{k11=2} for conv (f32[3,300,4,4]{3,2,1,0}, u8[0]{0}) custom-call(f32[3,6,128,128]{3,2,1,0}, f32[300,6,125,125]{3,2,1,0}), window={size=125x125 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"conv_result_scale":1,"activation_mode":"kNone","side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false} is taking a while...
+2024-05-10 19:12:30.939428: E external/xla/xla/service/slow_operation_alarm.cc:133] The operation took 2.782243546s
+Trying algorithm eng3{k11=2} for conv (f32[3,300,4,4]{3,2,1,0}, u8[0]{0}) custom-call(f32[3,6,128,128]{3,2,1,0}, f32[300,6,125,125]{3,2,1,0}), window={size=125x125 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"conv_result_scale":1,"activation_mode":"kNone","side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false} is taking a while...
+2024-05-10 19:12:40.828645: E external/xla/xla/service/slow_operation_alarm.cc:65] Trying algorithm eng21{k2=2,k4=3,k5=0,k6=0,k7=0} for conv (f32[300,3,4,4]{3,2,1,0}, u8[0]{0}) custom-call(f32[6,3,128,128]{3,2,1,0}, f32[6,300,32,32]{3,2,1,0}), window={size=4x4 stride=4x4}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convBackwardFilter", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"conv_result_scale":1,"activation_mode":"kNone","side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false} is taking a while...
+2024-05-10 19:12:41.585479: E external/xla/xla/service/slow_operation_alarm.cc:133] The operation took 1.756943421s
+Trying algorithm eng21{k2=2,k4=3,k5=0,k6=0,k7=0} for conv (f32[300,3,4,4]{3,2,1,0}, u8[0]{0}) custom-call(f32[6,3,128,128]{3,2,1,0}, f32[6,300,32,32]{3,2,1,0}), window={size=4x4 stride=4x4}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convBackwardFilter", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"conv_result_scale":1,"activation_mode":"kNone","side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false} is taking a while...
+I0510 19:22:04.112236 140324399277888 train_parallel.py:177] Epoch 1: Train_loss = 0.5101830959320068, Test_loss = 0.1627436876296997
+I0510 19:31:06.370684 140324399277888 train_parallel.py:177] Epoch 2: Train_loss = 0.10995803773403168, Test_loss = 0.07542899250984192
+I0510 19:40:08.756824 140324399277888 train_parallel.py:177] Epoch 3: Train_loss = 0.056743912398815155, Test_loss = 0.04312736541032791
+I0510 19:49:10.988797 140324399277888 train_parallel.py:177] Epoch 4: Train_loss = 0.0346522256731987, Test_loss = 0.028273526579141617
+I0510 19:58:13.377627 140324399277888 train_parallel.py:177] Epoch 5: Train_loss = 0.023508897051215172, Test_loss = 0.01952311210334301
+I0510 20:07:16.266269 140324399277888 train_parallel.py:177] Epoch 6: Train_loss = 0.017001161351799965, Test_loss = 0.01443050429224968
+I0510 20:16:19.508283 140324399277888 train_parallel.py:177] Epoch 7: Train_loss = 0.012947031296789646, Test_loss = 0.011232953518629074
+I0510 20:25:23.124859 140324399277888 train_parallel.py:177] Epoch 8: Train_loss = 0.010249646380543709, Test_loss = 0.00899786502122879
+I0510 20:34:26.628339 140324399277888 train_parallel.py:177] Epoch 9: Train_loss = 0.008328177034854889, Test_loss = 0.007429248187690973
+I0510 20:43:30.042762 140324399277888 train_parallel.py:177] Epoch 10: Train_loss = 0.006947620306164026, Test_loss = 0.006124341860413551
+I0510 20:59:28.753096 140324399277888 train_parallel.py:177] Epoch 11: Train_loss = 0.005906298290938139, Test_loss = 0.005319931544363499
+I0510 21:08:32.512066 140324399277888 train_parallel.py:177] Epoch 12: Train_loss = 0.005107921548187733, Test_loss = 0.004619348794221878
+I0510 21:17:36.382982 140324399277888 train_parallel.py:177] Epoch 13: Train_loss = 0.004447420593351126, Test_loss = 0.004034798126667738
+I0510 21:27:29.432504 140324399277888 train_parallel.py:177] Epoch 14: Train_loss = 0.003931373357772827, Test_loss = 0.003516273805871606
+I0510 21:37:19.638973 140324399277888 train_parallel.py:177] Epoch 15: Train_loss = 0.003501711180433631, Test_loss = 0.003184759523719549
+I0510 21:47:07.694330 140324399277888 train_parallel.py:177] Epoch 16: Train_loss = 0.0031472542323172092, Test_loss = 0.0028488258831202984
+I0510 21:56:56.506770 140324399277888 train_parallel.py:177] Epoch 17: Train_loss = 0.0028345943428575993, Test_loss = 0.002576297614723444
+I0510 22:06:50.478303 140324399277888 train_parallel.py:177] Epoch 18: Train_loss = 0.0025872683618217707, Test_loss = 0.0026440115179866552
+I0510 22:16:40.071000 140324399277888 train_parallel.py:177] Epoch 19: Train_loss = 0.0023711228277534246, Test_loss = 0.002162757096812129
+I0510 22:26:28.976139 140324399277888 train_parallel.py:177] Epoch 20: Train_loss = 0.0021783208940178156, Test_loss = 0.002173539251089096
+I0510 22:36:35.784607 140324399277888 train_parallel.py:177] Epoch 21: Train_loss = 0.0020153564400970936, Test_loss = 0.0024111142847687006
+I0510 22:46:23.120327 140324399277888 train_parallel.py:177] Epoch 22: Train_loss = 0.00187857320997864, Test_loss = 0.001797275966964662
+I0510 22:56:15.817781 140324399277888 train_parallel.py:177] Epoch 23: Train_loss = 0.0017523120623081923, Test_loss = 0.0017065444262698293
+I0510 23:06:05.260379 140324399277888 train_parallel.py:177] Epoch 24: Train_loss = 0.0016394725535064936, Test_loss = 0.001491327304393053
+I0510 23:15:53.202773 140324399277888 train_parallel.py:177] Epoch 25: Train_loss = 0.0015338390367105603, Test_loss = 0.0016957081388682127
+I0510 23:25:41.314777 140324399277888 train_parallel.py:177] Epoch 26: Train_loss = 0.0014468031004071236, Test_loss = 0.0012947872746735811
+2024-05-11 18:58:21.639857: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2024-05-11 18:58:21.639925: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2024-05-11 18:58:21.641811: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2024-05-11 18:58:24.542890: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+I0511 18:58:42.959544 139852143859520 xla_bridge.py:863] Unable to initialize backend 'rocm': NOT_FOUND: Could not find registered platform with name: "rocm". Available platform names are: CUDA
+I0511 18:58:42.964125 139852143859520 xla_bridge.py:863] Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: libtpu.so: cannot open shared object file: No such file or directory
+I0511 18:58:42.986505 139852143859520 main.py:43] JAX process: 0 / 1
+I0511 18:58:42.986668 139852143859520 main.py:45] JAX local devices: [cuda(id=0), cuda(id=1), cuda(id=2), cuda(id=3)]
+I0511 18:58:42.987714 139852143859520 train_parallel.py:105] Initialising airfoilMNIST dataset.
+I0511 18:58:42.993172 139852143859520 dataset_info.py:599] Load dataset info from /local/disk1/tjavaid/PreprocessedDataSet4nacaFOAM/Incompressible_128x128/
+I0511 18:58:43.000437 139852143859520 dataset_info.py:691] For 'airfoilMNIST/1.0.0': fields info.[module_name] differ on disk and in the code. Keeping the one from code.
+I0511 18:58:43.154235 139852143859520 logging_logger.py:49] Constructing tf.data.Dataset airfoilMNIST for split _EvenSplit(split='train', index=0, count=1, drop_remainder=False), from /local/disk1/tjavaid/PreprocessedDataSet4nacaFOAM/Incompressible_128x128/
+I0511 18:58:43.170387 139852143859520 dataset_info.py:599] Load dataset info from /local/disk1/tjavaid/PreprocessedDataSet4nacaFOAM/Incompressible_128x128/
+I0511 18:58:43.174098 139852143859520 dataset_info.py:691] For 'airfoilMNIST/1.0.0': fields info.[module_name] differ on disk and in the code. Keeping the one from code.
+I0511 18:58:43.223136 139852143859520 logging_logger.py:49] Constructing tf.data.Dataset airfoilMNIST for split _EvenSplit(split='test', index=0, count=1, drop_remainder=False), from /local/disk1/tjavaid/PreprocessedDataSet4nacaFOAM/Incompressible_128x128/
+I0511 18:58:51.415372 139852143859520 train_parallel.py:132] Starting training loop. Initial compile might take a while.
+I0511 19:02:52.789006 139852143859520 train_parallel.py:177] Epoch 1: Train_loss = 0.061184413731098175, Test_loss = 0.00772425951436162
+I0511 19:06:36.060618 139852143859520 train_parallel.py:177] Epoch 2: Train_loss = 0.005463475361466408, Test_loss = 0.003874453017488122
+I0511 19:10:18.864453 139852143859520 train_parallel.py:177] Epoch 3: Train_loss = 0.0032100167591124773, Test_loss = 0.002544590039178729
+I0511 19:14:01.080835 139852143859520 train_parallel.py:177] Epoch 4: Train_loss = 0.002204655669629574, Test_loss = 0.0018439731793478131
+I0511 19:17:43.315903 139852143859520 train_parallel.py:177] Epoch 5: Train_loss = 0.0017141373828053474, Test_loss = 0.0014734489377588034
+I0511 19:21:25.918966 139852143859520 train_parallel.py:177] Epoch 6: Train_loss = 0.0014595064567402005, Test_loss = 0.001264766207896173
+I0511 19:25:08.136972 139852143859520 train_parallel.py:177] Epoch 7: Train_loss = 0.0012901374138891697, Test_loss = 0.0012435265816748142
+I0511 19:28:50.319732 139852143859520 train_parallel.py:177] Epoch 8: Train_loss = 0.0011241829488426447, Test_loss = 0.0010303303133696318
+I0511 19:32:32.925688 139852143859520 train_parallel.py:177] Epoch 9: Train_loss = 0.0010355530539527535, Test_loss = 0.0009750942117534578
+I0511 19:36:15.273335 139852143859520 train_parallel.py:177] Epoch 10: Train_loss = 0.0009383345604874194, Test_loss = 0.0009250142029486597
+I0511 19:40:18.345559 139852143859520 train_parallel.py:177] Epoch 11: Train_loss = 0.0008726667729206383, Test_loss = 0.0008380457293242216
+I0511 19:44:00.577566 139852143859520 train_parallel.py:177] Epoch 12: Train_loss = 0.0008190508815459907, Test_loss = 0.0007475110469385982
+I0511 19:47:43.684249 139852143859520 train_parallel.py:177] Epoch 13: Train_loss = 0.0007867134409025311, Test_loss = 0.0007408409146592021
+I0511 19:51:26.858849 139852143859520 train_parallel.py:177] Epoch 14: Train_loss = 0.000731377222109586, Test_loss = 0.0006740120588801801
+I0511 19:55:10.105800 139852143859520 train_parallel.py:177] Epoch 15: Train_loss = 0.0006903171888552606, Test_loss = 0.0006562885828316212
+I0511 19:58:53.005204 139852143859520 train_parallel.py:177] Epoch 16: Train_loss = 0.0006763979326933622, Test_loss = 0.0006002166774123907
+I0511 20:02:35.712706 139852143859520 train_parallel.py:177] Epoch 17: Train_loss = 0.0006219374481588602, Test_loss = 0.0005970692727714777
+I0511 20:06:18.838792 139852143859520 train_parallel.py:177] Epoch 18: Train_loss = 0.0005987340118736029, Test_loss = 0.0005397681379690766
+I0511 20:10:02.071842 139852143859520 train_parallel.py:177] Epoch 19: Train_loss = 0.000577193743083626, Test_loss = 0.0006422861479222775
+I0511 20:13:45.502267 139852143859520 train_parallel.py:177] Epoch 20: Train_loss = 0.0005430314922705293, Test_loss = 0.0004969096044078469
+I0511 20:17:48.205355 139852143859520 train_parallel.py:177] Epoch 21: Train_loss = 0.0005232419935055077, Test_loss = 0.0004861283232457936
+I0511 20:21:31.267922 139852143859520 train_parallel.py:177] Epoch 22: Train_loss = 0.0005076327361166477, Test_loss = 0.0004616463265847415
+I0511 20:25:28.898415 139852143859520 train_parallel.py:177] Epoch 23: Train_loss = 0.0004846853844355792, Test_loss = 0.0004355889104772359
+I0511 20:29:31.843575 139852143859520 train_parallel.py:177] Epoch 24: Train_loss = 0.0004684823506977409, Test_loss = 0.0004480610368773341
+I0511 20:33:34.784728 139852143859520 train_parallel.py:177] Epoch 25: Train_loss = 0.0004545562551356852, Test_loss = 0.0004461003409232944
+I0511 20:37:37.386840 139852143859520 train_parallel.py:177] Epoch 26: Train_loss = 0.00043476762948557734, Test_loss = 0.00039688029210083187
+I0511 20:41:40.451102 139852143859520 train_parallel.py:177] Epoch 27: Train_loss = 0.00041935202898457646, Test_loss = 0.0003889577346853912
+I0511 20:45:44.194045 139852143859520 train_parallel.py:177] Epoch 28: Train_loss = 0.0004072259471286088, Test_loss = 0.00038305879570543766
+I0511 20:49:47.253945 139852143859520 train_parallel.py:177] Epoch 29: Train_loss = 0.0003930050879716873, Test_loss = 0.00037949535180814564
+I0511 20:53:46.983208 139852143859520 train_parallel.py:177] Epoch 30: Train_loss = 0.00038165797013789415, Test_loss = 0.000350943737430498
+I0511 20:58:08.231348 139852143859520 train_parallel.py:177] Epoch 31: Train_loss = 0.0003705182170961052, Test_loss = 0.0003458628198131919
+I0511 21:02:10.515609 139852143859520 train_parallel.py:177] Epoch 32: Train_loss = 0.00036056904355064034, Test_loss = 0.0003460744337644428
+I0511 21:06:12.748255 139852143859520 train_parallel.py:177] Epoch 33: Train_loss = 0.00034907975350506604, Test_loss = 0.00033392521436326206
+I0511 21:10:15.971348 139852143859520 train_parallel.py:177] Epoch 34: Train_loss = 0.0003407088224776089, Test_loss = 0.00032128934981301427
+I0511 21:14:18.944670 139852143859520 train_parallel.py:177] Epoch 35: Train_loss = 0.0003306671278551221, Test_loss = 0.00030811026226729155
+I0511 21:18:21.027285 139852143859520 train_parallel.py:177] Epoch 36: Train_loss = 0.0003224213432986289, Test_loss = 0.0003039613366127014
+I0511 21:22:23.934656 139852143859520 train_parallel.py:177] Epoch 37: Train_loss = 0.0003165131201967597, Test_loss = 0.00029648846248164773
+I0511 21:26:21.780458 139852143859520 train_parallel.py:177] Epoch 38: Train_loss = 0.00030767719727009535, Test_loss = 0.0002843650581780821
+I0511 21:30:24.957875 139852143859520 train_parallel.py:177] Epoch 39: Train_loss = 0.0003030650841537863, Test_loss = 0.00028968791593797505
+I0511 21:34:28.349357 139852143859520 train_parallel.py:177] Epoch 40: Train_loss = 0.0002940981648862362, Test_loss = 0.0002754413289949298
+I0511 21:38:48.195713 139852143859520 train_parallel.py:177] Epoch 41: Train_loss = 0.00028899728204123676, Test_loss = 0.0002702470519579947
+I0511 21:42:50.048803 139852143859520 train_parallel.py:177] Epoch 42: Train_loss = 0.00028347744955681264, Test_loss = 0.00026311533292755485
+I0511 21:46:51.988921 139852143859520 train_parallel.py:177] Epoch 43: Train_loss = 0.000276574632152915, Test_loss = 0.0002560240973252803
+I0511 21:50:54.204261 139852143859520 train_parallel.py:177] Epoch 44: Train_loss = 0.0002743451332207769, Test_loss = 0.0002925228327512741
+I0511 21:54:51.338122 139852143859520 train_parallel.py:177] Epoch 45: Train_loss = 0.00026764211361296475, Test_loss = 0.00024820826365612447
+I0511 21:58:53.507228 139852143859520 train_parallel.py:177] Epoch 46: Train_loss = 0.00026380066992715, Test_loss = 0.00024639954790472984
+I0511 22:02:55.584107 139852143859520 train_parallel.py:177] Epoch 47: Train_loss = 0.0002595301193650812, Test_loss = 0.0002445685095153749
+I0511 22:06:58.068438 139852143859520 train_parallel.py:177] Epoch 48: Train_loss = 0.0002546748728491366, Test_loss = 0.00023988356406334788
+I0511 22:11:00.891182 139852143859520 train_parallel.py:177] Epoch 49: Train_loss = 0.00025340382126159966, Test_loss = 0.00023271696409210563
+I0511 22:15:02.529301 139852143859520 train_parallel.py:177] Epoch 50: Train_loss = 0.0002488821919541806, Test_loss = 0.0002303474466316402
+2024-05-19 00:50:21.146301: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2024-05-19 00:50:21.146375: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2024-05-19 00:50:21.148344: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2024-05-19 00:50:24.336346: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+I0519 00:50:42.631356 139913184905024 xla_bridge.py:863] Unable to initialize backend 'rocm': NOT_FOUND: Could not find registered platform with name: "rocm". Available platform names are: CUDA
+I0519 00:50:42.634950 139913184905024 xla_bridge.py:863] Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: libtpu.so: cannot open shared object file: No such file or directory
+I0519 00:50:42.653708 139913184905024 main.py:43] JAX process: 0 / 1
+I0519 00:50:42.653862 139913184905024 main.py:45] JAX local devices: [cuda(id=0), cuda(id=1), cuda(id=2), cuda(id=3)]
+I0519 00:50:42.654343 139913184905024 train_parallel.py:105] Initialising airfoilMNIST dataset.
+I0519 00:50:42.734119 139913184905024 dataset_info.py:599] Load dataset info from /local/disk1/tjavaid/PreprocessedDataSet4nacaFOAM/Incompressible_128x128/
+I0519 00:50:42.740549 139913184905024 dataset_info.py:691] For 'airfoilMNIST/1.0.0': fields info.[module_name] differ on disk and in the code. Keeping the one from code.
+I0519 00:50:42.879716 139913184905024 logging_logger.py:49] Constructing tf.data.Dataset airfoilMNIST for split _EvenSplit(split='train', index=0, count=1, drop_remainder=False), from /local/disk1/tjavaid/PreprocessedDataSet4nacaFOAM/Incompressible_128x128/
+I0519 00:50:42.895009 139913184905024 dataset_info.py:599] Load dataset info from /local/disk1/tjavaid/PreprocessedDataSet4nacaFOAM/Incompressible_128x128/
+I0519 00:50:42.898290 139913184905024 dataset_info.py:691] For 'airfoilMNIST/1.0.0': fields info.[module_name] differ on disk and in the code. Keeping the one from code.
+I0519 00:50:42.947034 139913184905024 logging_logger.py:49] Constructing tf.data.Dataset airfoilMNIST for split _EvenSplit(split='test', index=0, count=1, drop_remainder=False), from /local/disk1/tjavaid/PreprocessedDataSet4nacaFOAM/Incompressible_128x128/
+I0519 00:50:51.462661 139913184905024 train_parallel.py:132] Starting training loop. Initial compile might take a while.
+jax.errors.SimplifiedTraceback: For simplicity, JAX has removed its internal frames from the traceback of the following exception. Set JAX_TRACEBACK_FILTERING=off to include these.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/work/tjavaid/tjavaid/Training/naca_transformer/code/main.py", line 63, in <module>
+    app.run(main)
+  File "/work/tjavaid/.venv/lib/python3.9/site-packages/absl/app.py", line 308, in run
+    _run_main(main, args)
+  File "/work/tjavaid/.venv/lib/python3.9/site-packages/absl/app.py", line 254, in _run_main
+    sys.exit(main(argv))
+  File "/work/tjavaid/tjavaid/Training/naca_transformer/code/main.py", line 52, in main
+    train_and_evaluate_parallel(FLAGS.config)    
+  File "/work/tjavaid/tjavaid/Training/naca_transformer/code/train_parallel.py", line 146, in train_and_evaluate_parallel
+    state, train_loss = train_step(state, x_train, y_train, rng)
+  File "/work/tjavaid/tjavaid/Training/naca_transformer/code/train_parallel.py", line 81, in train_step
+    (loss, _), grads = grad_fn(state.params)
+  File "/work/tjavaid/tjavaid/Training/naca_transformer/code/train_parallel.py", line 72, in loss_fn
+    preds = state.apply_fn({'params': params}, x, y, train=True,
+  File "/work/tjavaid/tjavaid/Training/naca_transformer/code/src/transformer/network.py", line 23, in __call__
+    x = self.encoder(**self.config, name='Encoder')(x, train=train)
+  File "/work/tjavaid/tjavaid/Training/naca_transformer/code/src/transformer/encoder.py", line 69, in __call__
+    x = PositionEmbedding(name='PositionEmbedding')(x)
+  File "/work/tjavaid/tjavaid/Training/naca_transformer/code/src/transformer/embedding.py", line 74, in __call__
+    y = self.param(
+flax.errors.ScopeParamShapeError: Initializer expected to generate shape (1, 4096, 450) but got shape (1, 1024, 450) instead for parameter "PositionEmbedding" in "/Encoder/PositionEmbedding". (https://flax.readthedocs.io/en/latest/api_reference/flax.errors.html#flax.errors.ScopeParamShapeError)

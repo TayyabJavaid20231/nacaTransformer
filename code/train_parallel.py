@@ -8,6 +8,7 @@ from absl import logging
 from flax import jax_utils
 from flax.training import train_state, orbax_utils, common_utils
 from flax.metrics import tensorboard
+from flax import serialization
 from functools import partial
 import jax
 import orbax
@@ -26,6 +27,8 @@ import os
 from jax.tree_util import tree_structure
 
 from typing import Any, Tuple
+
+import time
 
 from src.transformer.input_pipeline import get_data_from_tfds
 from src.transformer.network import VisionTransformer
@@ -123,7 +126,8 @@ def train_and_evaluate_parallel(config: ConfigDict):
 
     state = create_train_state(rng, FrozenConfigDict(config), lr_scheduler)
 
-    train_metrics, test_metrics, train_log, test_log = [], [], [], []
+    train_metrics, test_metrics, train_log, test_log, time4step = [], [], [], [], []
+    starttime = time.time()
 
     logging.info("Starting training loop. Initial compile might take a while.")
     for step, batch in enumerate(tfds.as_numpy(ds_train)):
@@ -166,6 +170,8 @@ def train_and_evaluate_parallel(config: ConfigDict):
 
             train_metrics.append(train_loss)
             test_metrics.append(test_loss)
+            time4step.append((time.time() - starttime)/60)
+            starttime = time.time()
             
 
             logging.info(
@@ -199,23 +205,30 @@ def train_and_evaluate_parallel(config: ConfigDict):
         pass
 
     # save raw loss data into txt-file
-    raw_loss = np.concatenate((train_metrics, test_metrics))
-    raw_loss = raw_loss.reshape(2, -1).transpose()
+    raw_loss = np.concatenate((time4step, train_metrics, test_metrics))
+    raw_loss = raw_loss.reshape(3, -1).transpose()
     np.savetxt('{}/loss_raw.txt'.format(config.output_dir), raw_loss,
                delimiter=',')
+    #statedata = serialization.to_state_dict(state)
+    #with open(os.path.join(config.output_dir,'model_state.jax'), 'w') as f:
+    #    f.write(statedata)
 
 
-    print(tree_structure(state))
+    #print(tree_structure(state))
     #with open('/local/disk1/ebeqa/naca_transformer/outputs/struct.txt' , 'w') as file:
     #   file.write(tree_structure(state))
+    bytes_data = serialization.to_bytes(state)
 
-   
+    # Save the serialized bytes to a file
+    with open(os.path.join(config.output_dir,'model_state.jax'), 'wb') as f:
+        f.write(bytes_data)
+
   
-    ckpt = {'model': state}
-    orbax_checkpointer = orbax.checkpoint.PyTreeCheckpointer()
-    save_args = orbax_utils.save_args_from_target(ckpt)
-    orbax_checkpointer.save('{}/nacaVIT'.format(config.output_dir), ckpt,
-                            save_args=save_args)
+    #ckpt = {'model': state}
+    #orbax_checkpointer = orbax.checkpoint.PyTreeCheckpointer()
+    #save_args = orbax_utils.save_args_from_target(ckpt)
+    #orbax_checkpointer.save('{}/nacaVIT'.format(config.output_dir), ckpt,
+    #                        save_args=save_args)
 
     
 

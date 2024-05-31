@@ -10,6 +10,28 @@ from mpl_toolkits.axes_grid1 import inset_locator
 import numpy as np
 
 
+def set_range(config: ConfigDict, z2, i):
+
+        if i == 0:
+            if config.plots.set_range:
+                lower_limit, upper_limit = config.plots.pressure_range
+            else:
+                lower_limit, upper_limit = np.min(z2[np.nonzero(z2)]), np.max(z2)
+        elif i == 1:
+            if config.plots.set_range:
+                lower_limit, upper_limit = config.plots.ux_range
+            else:
+                lower_limit, upper_limit = np.min(z2), np.max(z2)
+        else:
+            if config.plots.set_range:
+                lower_limit, upper_limit = config.plots.uy_range
+            else:
+                lower_limit, upper_limit = np.min(z2), np.max(z2)
+        return lower_limit, upper_limit
+
+
+
+
 def plot_fields(config: ConfigDict, predictions, ground_truth, epoch, idx):
     nrows, ncols = 3, 2
     fig, ax = plt.subplots(nrows, ncols, figsize=(10, 15))
@@ -18,28 +40,36 @@ def plot_fields(config: ConfigDict, predictions, ground_truth, epoch, idx):
     nx, ny = config.vit.img_size
     x, y = np.mgrid[xmin:xmax:(nx * 1j), ymin:ymax:(ny * 1j)]
 
-    labelname = ['$p/p_\infty$', '$u_x/u_\infty$', '$u_y/u_\infty$']
+    if config.denormalization.denormalize:        
+        labelname = ['$p/p_\infty$', '$u_x/u_\infty$', '$u_y/u_\infty$']
+    else:
+        labelname = ['Normalized p', 'Normalized $u_x$', 'Normalized $u_y$']
 
     for i in range(nrows):
         z1, z2 = predictions[:, :, i], ground_truth[:, :, i]
-
-        geometry_mask_prediction = (z1 >= config.internal_geometry.value-1e-2) & (z1 <= config.internal_geometry.value+1e-2)
-        geometry_mask_ground_truth = (z2 == config.internal_geometry.value)
-
-        if i == 0:
-            lower_limit, upper_limit = np.min(z2[np.nonzero(z2)]), np.max(z2)
-        else:
-            lower_limit, upper_limit = np.min(z2), np.max(z2)
-
+        ## Setting Ranges
+        lower_limit, upper_limit = set_range(config, z2, i) 
+#        if i == 0:
+#            if config.plots.set_range:
+#                lower_limit, upper_limit = config.plots.pressure_range
+#            else:
+#                lower_limit, upper_limit = np.min(z2[np.nonzero(z2)]), np.max(z2)
+#        elif i == 1:
+#            if config.plots.set_range:
+#                lower_limit, upper_limit = config.plots.ux_range
+#            else:
+#                lower_limit, upper_limit = np.min(z2), np.max(z2)
+#        else:
+#            if config.plots.set_range:
+#                lower_limit, upper_limit = config.plots.uy_range
+#            else:
+#                lower_limit, upper_limit = np.min(z2), np.max(z2)
         im0 = ax[i, 0].pcolormesh(
             x, y, z1, vmin=lower_limit, vmax=upper_limit,
         )
-        im0.set_array(np.ma.array(z1, mask=geometry_mask_prediction))
-
         im1 = ax[i, 1].pcolormesh(
             x, y, z2, vmin=lower_limit, vmax=upper_limit,
         )
-        im1.set_array(np.ma.array(z2, mask=geometry_mask_ground_truth))
 
         axins = inset_locator.inset_axes(ax[i, 1],
                                          width="5%", height="100%",
@@ -75,7 +105,10 @@ def plot_predictions(config: ConfigDict, predictions, ground_truth, epoch, idx):
     nx, ny = config.vit.img_size
     x, y = np.mgrid[xmin:xmax:(nx * 1j), ymin:ymax:(ny * 1j)]
 
-    labelname = ['$p/p_\infty$', '$u_x/u_\infty$', '$u_y/u_\infty$']
+    if config.denormalization.denormalize:        
+        labelname = ['$p/p_\infty$', '$u_x/u_\infty$', '$u_y/u_\infty$']
+    else:
+        labelname = ['Normalized p', 'Normalized $u_x$', 'Normalized $u_y$']
     outputname = ['p', 'ux', 'uy']
 
     nplots, ncols = 3, 2
@@ -84,25 +117,16 @@ def plot_predictions(config: ConfigDict, predictions, ground_truth, epoch, idx):
         fig, ax = plt.subplots(1, ncols, figsize=(10, 5))
 
         z1, z2 = predictions[:, :, i], ground_truth[:, :, i]
-
-        geometry_mask_prediction = (z1 >= config.internal_geometry.value-1e-2) & (z1 <= config.internal_geometry.value+1e-2)
-        geometry_mask_ground_truth = (z2 == config.internal_geometry.value)
-
-
-        if i == 0:
-            lower_limit, upper_limit = np.min(z2[np.nonzero(z2)]), np.max(z2)
-        else:
-            lower_limit, upper_limit = np.min(z2), np.max(z2)
+        lower_limit, upper_limit = set_range(config, z2, i)
+        #if i == 0:
+        #    lower_limit, upper_limit = np.min(z2[np.nonzero(z2)]), np.max(z2)
+        #else:
+        #    lower_limit, upper_limit = np.min(z2), np.max(z2)
 
         im0 = ax[0].pcolormesh(
             x, y, z1, vmin=lower_limit, vmax=upper_limit)
-        im0.set_array(np.ma.array(z1, mask=geometry_mask_prediction))
-        
-
         im1 = ax[1].pcolormesh(
             x, y, z2, vmin=lower_limit, vmax=upper_limit)
-        im1.set_array(np.ma.array(z2, mask=geometry_mask_ground_truth))
-        
 
         axins = inset_locator.inset_axes(ax[1],
                                          width="5%", height="100%",
@@ -301,3 +325,38 @@ def plot_preprocess(config: ConfigDict, encoder, decoder):
     plt.savefig('{}/vit_preprocess.png'.format(config.output_dir),
                 bbox_inches="tight", dpi=300)
     plt.close()
+
+
+
+def plotgrayscale(config, data):
+        # need p_inf here
+	data = data * 101325
+	'''
+	fig,ax=plt.subplots(1,1, figsize=(8, 8))
+	#levels = np.linspace(99000, 101500, 10)
+	#norm = BoundaryNorm(levels, ncolors=256)
+	#cp = ax.imshow(data, cmap='gray')
+	cp = ax.imshow(data, cmap='gray', vmin=99000, vmax=103500)
+	fig.colorbar(cp) # Add a colorbar to a plot
+	plt.xlabel('X')
+	plt.ylabel('Y')
+	plt.title('Variable')
+	plt.savefig('{}/grayimage.png'.format(config.output_dir))
+	
+	fig, ax = plt.subplots(1, 1, figsize=(8, 6))
+	#levels = np.linspace(99000, 101500, 100)
+	#var = ax.contourf(X, Y, data, levels=levels, cmap='gray')
+	var = ax.contourf(X, Y, data, cmap='gray', vmin=99000, vmax=101500)
+	fig.colorbar(var)
+	plt.xlabel('X')
+	plt.ylabel('Y')
+	plt.title('Variable')
+	plt.savefig('Database/' + str(name) + '.png')
+	'''
+	fig = plt.figure(frameon=False)
+	fig.set_size_inches(8,8)
+	ax = plt.Axes(fig, [0., 0., 1., 1.])
+	ax.set_axis_off()
+	fig.add_axes(ax)
+	ax.imshow(data, cmap='gray', vmin=99000, vmax=103500, aspect='auto')
+	plt.savefig('{}/grayimage101.png'.format(config.output_dir))
